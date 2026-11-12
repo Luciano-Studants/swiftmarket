@@ -37,7 +37,7 @@ No serviço **swiftmarket-api → Environment**, defina `CORS_ORIGINS` = a URL d
 ## 5. Gerar o APK apontando para a API
 
 No GitHub: **Actions → Android APK (debug) → Run workflow** e informe a URL da API
-(`https://swiftmarket-api.onrender.com`). Baixe o APK em *Artifacts*. No app, entre com
+(`https://swiftmarket-api.onrender.com`). Baixe o APK em _Artifacts_. No app, entre com
 `john.doe@swiftmarket.io` / `user123` ou crie uma conta.
 
 ## Observações
