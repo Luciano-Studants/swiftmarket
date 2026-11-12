@@ -27,7 +27,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: CORS_ORIGINS
-        value: https://swiftmarket-admin.onrender.com
+        value: https://swiftmarket-admin.onrender.com,https://localhost
 
   - type: web
     name: swiftmarket-admin

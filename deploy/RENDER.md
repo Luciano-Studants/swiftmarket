@@ -26,8 +26,8 @@
 
 ## 3. Liberar o painel na API (CORS)
 
-No serviço **swiftmarket-api → Environment**, defina `CORS_ORIGINS` = a URL do painel
-(ex.: `https://swiftmarket-admin.onrender.com`). Salve (a API reinicia).
+No serviço **swiftmarket-api → Environment**, defina `CORS_ORIGINS` = a URL do painel **e** `https://localhost` (origem do app Android), separados por vírgula
+(ex.: `https://swiftmarket-admin.onrender.com,https://localhost`). Salve (a API reinicia).
 
 ## 4. Testar
 
