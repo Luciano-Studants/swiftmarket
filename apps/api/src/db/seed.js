@@ -184,13 +184,15 @@ export function ensureUser(db, { email, name, password, role }) {
 }
 
 /** Usuários de demonstração: SOMENTE desenvolvimento (config.seedDemoData). */
-export function seedDemoUsers(db) {
-  ensureUser(db, {
-    email: 'admin@swiftmarket.com',
-    name: 'Admin',
-    password: 'admin123',
-    role: ROLES.ADMIN,
-  });
+export function seedDemoUsers(db, { withAdmin = true } = {}) {
+  if (withAdmin) {
+    ensureUser(db, {
+      email: 'admin@swiftmarket.com',
+      name: 'Admin',
+      password: 'admin123',
+      role: ROLES.ADMIN,
+    });
+  }
   ensureUser(db, {
     email: 'john.doe@swiftmarket.io',
     name: 'John Doe',
@@ -203,7 +205,7 @@ export function seedDemoUsers(db) {
 export function bootstrap(db, config) {
   if (config.seedDemoData) {
     seedProducts(db);
-    seedDemoUsers(db);
+    seedDemoUsers(db, { withAdmin: !config.demoMode });
   }
 
   if (config.adminEmail && config.adminPassword) {

@@ -29,7 +29,11 @@ export const config = {
 
   // Login Google/Apple é simulado: nunca habilitado em produção.
   enableSimulatedSocial: !isProd,
-  seedDemoData: !isProd,
+  // Modo demonstração (ex.: Render grátis, onde o disco é apagado a cada reinício): carrega
+  // produtos e um cliente de teste mesmo em produção. NÃO cria o admin de demonstração
+  // (admin123 é público); o admin vem de ADMIN_EMAIL/ADMIN_PASSWORD.
+  demoMode: process.env.DEMO_MODE === 'true',
+  seedDemoData: !isProd || process.env.DEMO_MODE === 'true',
 
   // E-mail (recuperação de senha). Em desenvolvimento, sem SMTP_URL o código vai para o log.
   smtpUrl: process.env.SMTP_URL || null,
@@ -42,8 +46,10 @@ if (isProd && !config.jwtSecret) {
   throw new Error('JWT_SECRET é obrigatório em produção.');
 }
 
-if (isProd && !config.smtpUrl) {
-  throw new Error('SMTP_URL é obrigatório em produção (e-mail de recuperação de senha).');
+if (isProd && !config.smtpUrl && !config.demoMode) {
+  throw new Error(
+    'SMTP_URL é obrigatório em produção (e-mail de recuperação de senha). Para demonstração use DEMO_MODE=true.',
+  );
 }
 
 if (isProd && config.adminPassword && config.adminPassword.length < 8) {

@@ -1,0 +1,39 @@
+# Blueprint do Render (plano grátis) - modo DEMONSTRAÇÃO.
+# Atenção: no plano grátis o disco é apagado a cada reinício/suspensão, então o banco SQLite
+# volta ao estado inicial (produtos de exemplo + admin do ADMIN_EMAIL). Não use para dados reais.
+services:
+  - type: web
+    name: swiftmarket-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev --workspace @swiftmarket/api --workspace @swiftmarket/shared
+    startCommand: node apps/api/src/server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: DEMO_MODE
+        value: 'true'
+      - key: TRUST_PROXY
+        value: 'true'
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: web
+    name: swiftmarket-admin
+    runtime: static
+    buildCommand: npm ci && npm run build --workspace @swiftmarket/admin
+    staticPublishPath: apps/admin/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: VITE_API_URL
+        sync: false
