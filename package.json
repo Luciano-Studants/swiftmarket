@@ -1,0 +1,32 @@
+{
+  "name": "swiftmarket",
+  "private": true,
+  "version": "0.1.0",
+  "description": "SwiftMarket - monorepo (API, app mobile do cliente, painel admin)",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "api:dev": "npm run dev --workspace @swiftmarket/api",
+    "api:start": "npm run start --workspace @swiftmarket/api",
+    "api:test": "npm run test --workspace @swiftmarket/api",
+    "format": "prettier --write .",
+    "mobile:dev": "npm run dev --workspace @swiftmarket/mobile",
+    "mobile:build": "npm run build --workspace @swiftmarket/mobile",
+    "mobile:test": "npm run test --workspace @swiftmarket/mobile",
+    "mobile:android": "npm run cap:sync --workspace @swiftmarket/mobile",
+    "mobile:open": "npm run cap:open --workspace @swiftmarket/mobile",
+    "test": "npm run api:test && npm run mobile:test && npm run admin:test",
+    "admin:dev": "npm run dev --workspace @swiftmarket/admin",
+    "admin:build": "npm run build --workspace @swiftmarket/admin",
+    "admin:test": "npm run test --workspace @swiftmarket/admin"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}

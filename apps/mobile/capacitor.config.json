@@ -1,0 +1,15 @@
+{
+  "appId": "com.swiftmarket.app",
+  "appName": "SwiftMarket",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0b0f14",
+      "overlaysWebView": false
+    }
+  }
+}

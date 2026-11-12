@@ -1,0 +1,42 @@
+# Produção: API + painel admin + HTTPS automático (Caddy).
+#   cp deploy/.env.production.example .env   # preencha os valores
+#   docker compose up -d --build
+services:
+  api:
+    build: { context: ., target: api }
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      TRUST_PROXY: 'true'
+      JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?defina ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?defina ADMIN_PASSWORD}
+      SMTP_URL: ${SMTP_URL:?defina SMTP_URL}
+      MAIL_FROM: ${MAIL_FROM:?defina MAIL_FROM}
+      CORS_ORIGINS: https://localhost,https://${ADMIN_DOMAIN:?defina ADMIN_DOMAIN}
+    volumes:
+      - swiftmarket-data:/data
+    expose: ['3333'] # só acessível pelo Caddy, nunca publicada no host
+
+  # Caddy já leva o painel admin compilado dentro da imagem (target admin).
+  caddy:
+    build:
+      context: .
+      target: admin
+      args:
+        VITE_API_URL: https://${API_DOMAIN:?defina API_DOMAIN}
+    restart: unless-stopped
+    depends_on: [api]
+    ports: ['80:80', '443:443']
+    environment:
+      API_DOMAIN: ${API_DOMAIN}
+      ADMIN_DOMAIN: ${ADMIN_DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  swiftmarket-data:
+  caddy-data:
+  caddy-config:

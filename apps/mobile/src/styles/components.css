@@ -1,0 +1,310 @@
+/* Primitivas visuais reutilizadas por várias telas. Estilos específicos ficam no <style scoped>. */
+
+/* ---------- Texto ---------- */
+.eyebrow {
+  font: 700 10px var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.field-label {
+  display: block;
+  margin: 16px 0 6px;
+  font: 700 10px var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.error-text {
+  min-height: 16px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--danger);
+}
+
+/* ---------- Botões ---------- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--gradient);
+  color: #fff;
+  font: 700 13px var(--font-sans);
+  transition: transform 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.btn--ghost {
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.btn--solid-ink {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.btn--sm {
+  width: auto;
+  padding: 7px 14px;
+  font-size: 12px;
+}
+
+.icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 18px;
+}
+
+.badge-count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  padding: 1px 5px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #000;
+  font: 700 9px sans-serif;
+}
+
+/* ---------- Campos ---------- */
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font: 13px var(--font-mono);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- Cartões e linhas ---------- */
+.card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 1px 2px #0001;
+}
+
+.page-section {
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.row--button {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+  font: 13px var(--font-sans);
+}
+
+.thumb {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  font-size: 26px;
+  background-size: cover;
+  background-position: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--success-bg);
+  color: var(--success);
+  font: 700 9px var(--font-mono);
+}
+
+.badge--danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.summary-row--total {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.switch-row input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+}
+
+/* ---------- Chips de categoria ---------- */
+.chips {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  overflow-x: auto;
+}
+
+.chip {
+  flex: none;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  transition: 0.15s;
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+.chip--active {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ---------- Quantidade (+/−) ---------- */
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.qty button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: none;
+  color: var(--text);
+}
+
+.qty span {
+  min-width: 24px;
+  text-align: center;
+  font: 12px var(--font-mono);
+}
+
+/* ---------- Grade de produtos ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 8px 16px 24px;
+}
+
+@media (min-width: 760px) {
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Estatísticas ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stats .card b {
+  display: block;
+  margin-top: 4px;
+  font: 700 20px var(--font-mono);
+}
+
+/* ---------- Carregando ---------- */
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin: 40px auto;
+  border: 3px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.field-hint {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}

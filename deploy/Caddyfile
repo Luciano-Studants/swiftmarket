@@ -1,0 +1,17 @@
+# HTTPS automático (Let's Encrypt) para os dois domínios. Requer portas 80 e 443 abertas
+# e DNS apontando para este servidor.
+{$API_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy api:3333
+}
+
+{$ADMIN_DOMAIN} {
+	encode zstd gzip
+	root * /srv/admin
+	file_server
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+	}
+}

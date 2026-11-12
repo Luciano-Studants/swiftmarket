@@ -1,0 +1,62 @@
+# Gera o APK de DEBUG no GitHub (alternativa a instalar o Android Studio).
+# Uso: aba Actions -> "Android APK (debug)" -> Run workflow -> informe a URL HTTPS da API.
+# O arquivo .apk aparece em "Artifacts" no fim da execução (guarde por 14 dias).
+#
+# Debug APK serve para instalar e testar no celular. Para publicar na Play Store é preciso
+# um APK/AAB de release assinado (keystore), que não está neste workflow.
+name: Android APK (debug)
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: 'URL HTTPS da API (ex.: https://api.seudominio.com)'
+        required: true
+        type: string
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_API_URL: ${{ inputs.api_url }}
+    steps:
+      - name: Validar a URL da API
+        run: |
+          case "$VITE_API_URL" in
+            https://*) ;;
+            *) echo "::error::A API precisa ser HTTPS (o APK roda em https://localhost e bloqueia http)."; exit 1 ;;
+          esac
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - run: npm ci
+      - run: npm test
+
+      # Compila o web app e copia para o projeto Android.
+      - run: npm run mobile:android
+
+      - name: Compilar APK
+        working-directory: apps/mobile/android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: swiftmarket-debug-apk
+          path: apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14

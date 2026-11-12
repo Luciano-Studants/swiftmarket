@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  font: 14px/1.4 var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Contêiner do app: coluna única estilo celular; centralizado em telas largas. */
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+}
+
+#app > * {
+  flex: none;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Entrada suave das telas */
+.page-enter {
+  animation: page-in 0.3s ease both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (min-width: 760px) {
+  body {
+    background: var(--line);
+  }
+
+  #app {
+    max-width: 1040px;
+    box-shadow: 0 0 60px #0004;
+  }
+}

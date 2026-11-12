@@ -1,0 +1,30 @@
+node_modules/
+dist/
+.env
+.env.local
+
+# Dados locais da API (banco SQLite e uploads)
+apps/api/data/
+
+# Capacitor / Android
+apps/mobile/android/app/build/
+apps/mobile/android/.gradle/
+apps/mobile/android/local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+
+.DS_Store
+
+# Segredos de produção (só os *.example vão para o repositório)
+.env.*
+!.env.example
+!.env.production.example
+deploy/.env.production
+deploy/backups/
+
+# Gerado pelo `cap sync` (recriado no build)
+apps/mobile/android/app/src/main/assets/public/
+apps/mobile/android/capacitor-cordova-android-plugins/build/
+apps/mobile/android/build/

@@ -1,0 +1,32 @@
+# Roda a cada push e pull request: formatação, testes e builds (API, app e painel).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - name: Formatação
+        run: npx prettier --check .
+      - name: Testes (API, app, painel)
+        run: npm test
+      - name: Build do app do cliente
+        run: npm run mobile:build
+      - name: Build do painel admin
+        run: npm run admin:build

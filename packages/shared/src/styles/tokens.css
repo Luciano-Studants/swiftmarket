@@ -1,0 +1,64 @@
+/*
+ * Design tokens do SwiftMarket (portados do protótipo).
+ * Tema: o app define `data-theme="light|dark"` em <html>; sem o atributo ("auto")
+ * vale a preferência do sistema. O padrão inicial é escuro (ver index.html).
+ */
+
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --accent: #06b6d4;
+  --gradient: linear-gradient(135deg, #06b6d4, #6366f1);
+  --danger: #ef4444;
+  --success: #16a34a;
+
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px #0001, 0 8px 22px #0000000f;
+  --shadow-hover: 0 12px 28px #00000026;
+  --shadow-nav: 0 8px 28px #0003;
+
+  /* Tema claro */
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --ink: #111827;
+  --on-ink: #ffffff;
+  --success-bg: #dcfce7;
+  --header-dark: #0b0f14;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0b0f14;
+    --surface: #131a22;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #243040;
+    --ink: #e5e7eb;
+    --on-ink: #0b0f14;
+    --success-bg: #052e1a;
+    --header-dark: #05080c;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0b0f14;
+  --surface: #131a22;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --line: #243040;
+  --ink: #e5e7eb;
+  --on-ink: #0b0f14;
+  --success-bg: #052e1a;
+  --header-dark: #05080c;
+  color-scheme: dark;
+}
