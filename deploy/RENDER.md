@@ -13,8 +13,8 @@
 3. Preencha as variáveis pedidas:
    - `ADMIN_EMAIL`: seu e-mail de administrador (ex.: `admin@seudominio.com`)
    - `ADMIN_PASSWORD`: senha forte (mín. 8 caracteres) — **não use admin123**
-   - `CORS_ORIGINS`: deixe em branco por enquanto (passo 3)
-   - `VITE_API_URL`: deixe em branco por enquanto (passo 2)
+   - `CORS_ORIGINS` e `VITE_API_URL` já vêm preenchidos no `render.yaml` (confira os passos 2 e 3
+     se o Render adicionou sufixo aos nomes)
 4. **Apply**. Aguarde o build dos dois serviços (alguns minutos).
 
 ## 2. Apontar o painel para a API

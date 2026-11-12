@@ -1,4 +1,6 @@
 # Blueprint do Render (plano grátis) - modo DEMONSTRAÇÃO.
+# As URLs abaixo assumem os nomes swiftmarket-api e swiftmarket-admin; se o Render usar sufixo,
+# ajuste CORS_ORIGINS e VITE_API_URL.
 # Atenção: no plano grátis o disco é apagado a cada reinício/suspensão, então o banco SQLite
 # volta ao estado inicial (produtos de exemplo + admin do ADMIN_EMAIL). Não use para dados reais.
 services:
@@ -25,7 +27,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: CORS_ORIGINS
-        sync: false
+        value: https://swiftmarket-admin.onrender.com
 
   - type: web
     name: swiftmarket-admin
@@ -36,4 +38,4 @@ services:
       - key: NODE_VERSION
         value: 22
       - key: VITE_API_URL
-        sync: false
+        value: https://swiftmarket-api.onrender.com
